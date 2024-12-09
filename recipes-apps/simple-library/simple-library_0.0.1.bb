@@ -1,12 +1,11 @@
-DESCRIPTION = "Eample library use"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM= "file://${COMMON_LICENCE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+DESCRIPTION = "Example library use"
+LICENSE = "CLOSED"
 
 DEPENDS = "nlohmann-json gtest spdlog"
 
 inherit cmake
 
-SRC_URI = "https://github.com/darwendarwendarwen/lnx500-lab9.git"
+SRC_URI = "git://github.com/darwendarwendarwen/lnx500-lab9.git;branch=working-branch;protocol=https"
 SRCREV = "bb33a4d1b3f9a7777c0fa39041bc7f359af29cf1"
 
 S = "${WORKDIR}/git"
