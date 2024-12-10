@@ -22,15 +22,14 @@ int main() {
         return 1;
     }
 
-    // Set I2C slave address
-    if (ioctl(fd, I2C_SLAVE, DEV_ADDR
-) < 0) {
+    // Set the I2C slave address
+    if (ioctl(fd, I2C_SLAVE, DEV_ADDR) < 0) {
         perror("Failed to set I2C slave address");
         close(fd);
         return 1;
     }
 
-    // Read device ID
+    // Read the device ID
     buf[0] = DEVICE_ID_REG;
     if (write(fd, buf, 1) != 1 || read(fd, buf, 1) != 1) {
         perror("Failed to read device ID");
@@ -48,8 +47,9 @@ int main() {
         return 1;
     }
 
-    // Read X-axis data 
-    for (int i = 0; i < 20; i++) {
+    // Read axis data 
+    for (int i = 0; i < 50; i++) {
+        // read data from all axes starting from X_REG
         buf[0] = X_REG;
         if (write(fd, buf, 1) != 1 || read(fd, buf, 6) != 6) {
             perror("Failed to read x-axis data");
@@ -59,10 +59,12 @@ int main() {
         // Combine MSB and LSB
         // shift buf[1] << 8 (MSB) + (or) buf[0] (LSB)
         // MSB <1111> -> <11110000> | <1111> == 11111111
-        int16_t x = (int16_t)(buf[1] << 8 | buf[0]);  
-        printf("X = %d\n", x);
+        int16_t x = (int16_t)(buf[1] << 8 | buf[0]);
+        int16_t y = (int16_t)(buf[3] << 8 | buf[2]);
+        int16_t z = (int16_t)(buf[5] << 8 | buf[4]);
+        printf("X = %d,  Y = %d, Z = %d\n", x, y, z);
 
-        usleep(200*1000); // Delay 200 ms
+        usleep(100*1000); // Delay 200 ms
     }
 
     printf("Completed\n");
