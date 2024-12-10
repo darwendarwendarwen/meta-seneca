@@ -4,7 +4,7 @@ LICENSE = "CLOSED"
 
 
 SRC_URI = "git://github.com/darwendarwendarwen/Final-project-app.git;branch=working-branch;protocol=https"
-SRCREV = "8a2d1f928b1317fdb75f6208dd1b2cfa6f96c035"
+SRCREV = "660bb406f17497addc00fd160d2adc59302dae5e"
 
 S = "${WORKDIR}/git"
 
