@@ -11,6 +11,7 @@ IMAGE_INSTALL:append = " \
     i2c-tools \
     libgpiod \
     pmu-mod \
+    final-project-code \
     "
 
 IMAGE_FEATURES:append = " \
